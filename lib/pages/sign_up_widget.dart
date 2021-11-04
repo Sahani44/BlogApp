@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
+import 'email_sign_in.dart';
+
 class SignUpWidget extends StatelessWidget {
   const SignUpWidget({ Key? key }) : super(key: key);
 
@@ -41,7 +43,15 @@ class SignUpWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            Spacer(),
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50),),
+              onPressed: (){
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EmailLoginPage()));
+              }, 
+              child :Text('Log In/Sign Up'),
+              ),
+            SizedBox(height: 10,),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50),),
               onPressed: (){
@@ -52,7 +62,7 @@ class SignUpWidget extends StatelessWidget {
               icon: FaIcon(FontAwesomeIcons.google,color:Colors.white),
               ),
             SizedBox(height: 40,),
-            RichText(
+            /*RichText(
               text: TextSpan(
                 text: 'Already have an account ?',style: TextStyle(color: Colors.black),
                 children: [
@@ -62,7 +72,7 @@ class SignUpWidget extends StatelessWidget {
                   )
                 ],
               ),
-            ),
+            ),*/
             Spacer(),
           ],
         ),

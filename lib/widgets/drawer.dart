@@ -25,16 +25,6 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(CupertinoIcons.eject,color: Colors.blue),
-              title: Text("Log Out",
-                style: TextStyle(fontSize: 15,color: Colors.blue),
-              ),
-              onTap: (){
-                final provider = Provider.of<GoogleSignInProvider>(context,listen: false);
-                provider.logout();
-              },
-            ),
           ],
         )
         

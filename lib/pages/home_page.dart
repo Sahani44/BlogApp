@@ -1,7 +1,10 @@
 
+import 'package:blog_app/blog_categories/ai/ml/create_am.dart';
 import 'package:blog_app/widgets/drawer.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'google_sign_in.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -14,12 +17,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final user = FirebaseAuth.instance.currentUser!;
-
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.book),
         title: Text("BDCoE Blogs"),
+        actions: [
+          TextButton(
+              child: Text("Log Out",style: TextStyle(color:Colors.white),),
+              onPressed: (){
+                final provider = Provider.of<GoogleSignInProvider>(context,listen: false);
+                provider.logout();
+              },
+            ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -38,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     Column(
                       children: [
                         TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){}, child: Text("Explore",style: TextStyle(color: Colors.white),)),
-                        TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){}, child: Text("Create",style: TextStyle(color: Colors.white))),
+                        TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CreateAM()));}, child: Text("Create",style: TextStyle(color: Colors.white))),
                       ],
                     )
                   ],

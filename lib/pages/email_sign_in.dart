@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:blog_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:blog_app/utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class EmailLoginPage extends StatefulWidget {
   const EmailLoginPage({ Key? key }) : super(key: key);
@@ -12,23 +13,49 @@ class EmailLoginPage extends StatefulWidget {
 
 class _EmailLoginPageState extends State<EmailLoginPage> {
 
-  String name = "";
-  bool changeButton = false;
+  String _email = "";
+  String _name = "";
+  String _password = "";
+  final auth = FirebaseAuth.instance;
+  bool changeButtonli = false;
+  bool changeButtonsu = false;
   final _formKey = GlobalKey<FormState>();
 
-  moveToHome() async {
+  moveToHomeli() async {
     if(_formKey.currentState!.validate()){
     setState(() {
-      changeButton = true;
+      changeButtonli = true;
     });
     await Future.delayed(Duration(milliseconds: 500));
-    await Navigator.pushNamed(context , MyRoutes.homeRoute);
+    await auth.signInWithEmailAndPassword(email: _email, password: _password);
+
+    //await Navigator.pushNamed(context , MyRoutes.homeRoute);
+    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+
     setState(() {
-      changeButton = false;
+      changeButtonli = false;
     });
     }
   }
-
+  moveToHomesu() async {
+    if(_formKey.currentState!.validate()){
+    setState(() {
+      changeButtonsu = true;
+    });
+    await Future.delayed(Duration(milliseconds: 500));
+    await auth.createUserWithEmailAndPassword(email: _email, password: _password);
+    final user =  FirebaseAuth.instance.currentUser!;
+    user.updateDisplayName(_name);
+    user.updatePhotoURL('https://i.pinimg.com/originals/cf/f8/81/cff88167e47af84658194f167ece0aea.png');
+    //await Navigator.pushNamed(context , MyRoutes.homeRoute);
+    await auth.signInWithEmailAndPassword(email: _email, password: _password);
+    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    setState(() {
+      changeButtonsu = false;
+    });
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -46,7 +73,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                 height: 20.0,
                 //child: Text(""),
               ),
-              Text("Welcome $name",
+              Text("Welcome $_name",
               // ignore: prefer_const_constructors
               style: TextStyle(
                 fontSize: 28,
@@ -66,6 +93,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                   child: Column(
                     children: [
                       TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                     // ignore: prefer_const_constructors
                     decoration: InputDecoration(
                       hintText: "Enter User Name",
@@ -78,9 +106,27 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                       return null;
                     },
                     onChanged: (value){
-                      name = value;
                       setState(() {
-                        
+                        _name = value.trim();
+                      });
+                    },
+                  ),
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                    // ignore: prefer_const_constructors
+                    decoration: InputDecoration(
+                      hintText: "Enter Email id",
+                      labelText: "User Email",
+                    ),
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return "User Email cannot be Empty";
+                      }
+                      return null;
+                    },
+                    onChanged: (value){
+                      setState(() {
+                        _email = value.trim();
                       });
                     },
                   ),
@@ -95,6 +141,11 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                       }
                       return null;
                     },
+                    onChanged: (value){
+                      setState(() {
+                        _password = value.trim();
+                      });
+                    },
                     // ignore: prefer_const_constructors
                     decoration: InputDecoration(
                       hintText: "Enter Password",
@@ -107,30 +158,65 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                   //child: Text(""),
                     ),
                 
-                  Material(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Material(
                 
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(changeButton ?50:7),
-                    child: InkWell(
-                      onTap: () => moveToHome(),
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
-                        width: changeButton? 50 : 150,
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: changeButton?Icon(Icons.done,
-                          color: Colors.white,
-                        ) : 
-                        Text("Login",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(changeButtonli ?50:7),
+                        child: InkWell(
+                          onTap: () => moveToHomeli(),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 500),
+                            width: changeButtonli? 50 : 150,
+                            height: 50,
+                            //alignment: Alignment.center,
+                            child: changeButtonli?Icon(Icons.done,
+                              color: Colors.white,
+                            ) : 
+                            Center(
+                              child: Text("Login",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+
+                      Material(
+                
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(changeButtonli ?50:7),
+                        child: InkWell(
+                          onTap: () => moveToHomesu(),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 500),
+                            width: changeButtonsu? 50 : 150,
+                            height: 50,
+                            //alignment: Alignment.center,
+                            child: changeButtonsu?Icon(Icons.done,
+                              color: Colors.white,
+                            ) : 
+                            Center(
+                              child: Text("Sign Up",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+
                 
                  /*               ElevatedButton(
                     onPressed: () {
