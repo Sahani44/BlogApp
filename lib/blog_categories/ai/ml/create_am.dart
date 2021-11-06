@@ -19,6 +19,7 @@ class _CreateAMState extends State<CreateAM> {
       ),
       body: Container(),
       floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FloatingActionButton(
             onPressed: (){

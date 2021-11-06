@@ -11,5 +11,9 @@ class CrudMethods{
 
   }
 
+  Stream<QuerySnapshot?>  get getData  {
+    return FirebaseFirestore.instance.collection("Blogs").snapshots();
+  }
+
 
 }

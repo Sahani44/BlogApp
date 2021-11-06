@@ -1,5 +1,6 @@
 
 import 'package:blog_app/blog_categories/ai/ml/create_am.dart';
+import 'package:blog_app/blog_categories/ai/ml/explore_am.dart';
 import 'package:blog_app/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     Text("AI/ML",style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold),),
                     Column(
                       children: [
-                        TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){}, child: Text("Explore",style: TextStyle(color: Colors.white),)),
+                        TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => ExploreAm()));}, child: Text("Explore",style: TextStyle(color: Colors.white),)),
                         TextButton(style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CreateAM()));}, child: Text("Create",style: TextStyle(color: Colors.white))),
                       ],
                     )
