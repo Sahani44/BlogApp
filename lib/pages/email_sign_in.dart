@@ -1,4 +1,5 @@
 import 'package:blog_app/pages/email_sign_up.dart';
+import 'package:blog_app/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -34,26 +35,6 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
     });
     }
   }
-  /*moveToHomesu() async {
-    if(_formKey.currentState!.validate()){
-    setState(() {
-      changeButtonsu = true;
-    });
-    await Future.delayed(Duration(milliseconds: 500));
-    await auth.createUserWithEmailAndPassword(email: _email, password: _password).then((value) => {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => VerifyScreen()))
-    });
-    final user =  FirebaseAuth.instance.currentUser!;
-    user.updateDisplayName(_name);
-    user.updatePhotoURL('https://i.pinimg.com/originals/cf/f8/81/cff88167e47af84658194f167ece0aea.png');
-    //await Navigator.pushNamed(context , MyRoutes.homeRoute);
-    
-    //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
-    setState(() {
-      changeButtonsu = false;
-    });
-    }
-  }*/
   
   @override
   Widget build(BuildContext context) {
@@ -103,25 +84,6 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      /*TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                    // ignore: prefer_const_constructors
-                    decoration: InputDecoration(
-                      hintText: "Enter User Name",
-                      labelText: "User Name",
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return "User Name cannot be Empty";
-                      }
-                      return null;
-                    },
-                    onChanged: (value){
-                      setState(() {
-                        _name = value.trim();
-                      });
-                    },
-                  ),*/
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                     // ignore: prefer_const_constructors
@@ -173,7 +135,6 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Material(
-                
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(changeButtonli ?50:7),
                         child: InkWell(
@@ -192,61 +153,29 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-        
-                      /*Material(
-                
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(changeButtonli ?50:7),
-                        child: InkWell(
-                          onTap: () => moveToHomesu(),
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 500),
-                            width: changeButtonsu? 50 : 150,
-                            height: 50,
-                            //alignment: Alignment.center,
-                            child: changeButtonsu?Icon(Icons.done,
-                              color: Colors.white,
-                            ) : 
-                            Center(
-                              child: Text("Sign Up",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),*/
-                    ],
-                  )
-        
-                
-                 /*               ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context , MyRoutes.homeRoute);
-                    } , 
-                    style: TextButton.styleFrom(
-                      minimumSize: Size(130 , 40),
-                    ),
-                    child: Text("Login",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    ),
-                 */         
+                        )
+                      ],
+                      )         
                     ],
                   ),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetPassword()));
+                    }, 
+                    child: Text("Forgot Password?")
+                  )
+                ],
+              )
             ],
           ),
         ),

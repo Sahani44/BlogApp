@@ -176,18 +176,18 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     /* Material(
+                       Material(
                 
                         color: Colors.blue,
-                        borderRadius: BorderRadius.circular(changeButtonli ?50:7),
+                        borderRadius: BorderRadius.circular(changeButtonsu ?50:7),
                         child: InkWell(
-                          onTap: () => moveToHomeli(),
+                          onTap: () => moveToHomesu(),
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 500),
-                            width: changeButtonli? 50 : 150,
+                            width: changeButtonsu? 50 : 150,
                             height: 50,
                             //alignment: Alignment.center,
-                            child: changeButtonli?Icon(Icons.done,
+                            child: changeButtonsu?Icon(Icons.done,
                               color: Colors.white,
                             ) : 
                             Center(
@@ -201,52 +201,9 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                             ),
                           ),
                         ),
-                      ),*/
-        
-                      Material(
-                
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(changeButtonli ?50:7),
-                        child: InkWell(
-                          onTap: () => moveToHomesu(),
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 500),
-                            width: changeButtonsu? 50 : 150,
-                            height: 50,
-                            //alignment: Alignment.center,
-                            child: changeButtonsu?Icon(Icons.done,
-                              color: Colors.white,
-                            ) : 
-                            Center(
-                              child: Text("Sign Up",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                       ),
                     ],
-                  )
-        
-                
-                 /*               ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context , MyRoutes.homeRoute);
-                    } , 
-                    style: TextButton.styleFrom(
-                      minimumSize: Size(130 , 40),
-                    ),
-                    child: Text("Login",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    ),
-                 */         
+                  )         
                     ],
                   ),
                 ),
