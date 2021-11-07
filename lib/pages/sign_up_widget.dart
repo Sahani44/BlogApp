@@ -47,7 +47,7 @@ class SignUpWidget extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50),),
               onPressed: (){
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EmailLoginPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => EmailLoginPage()));
               }, 
               child :Text('Log In/Sign Up'),
               ),

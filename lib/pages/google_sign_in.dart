@@ -1,6 +1,4 @@
 
-import 'package:blog_app/pages/login_page.dart';
-import 'package:blog_app/pages/sign_up_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -45,9 +43,7 @@ class GoogleSignInProvider extends ChangeNotifier
     if(user.providerData[0].providerId == 'google.com')
     {await googleSignIn.disconnect();}
     FirebaseAuth.instance.signOut();
-
-
-
+    
   }
 
 }

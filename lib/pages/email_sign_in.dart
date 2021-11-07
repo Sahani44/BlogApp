@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:blog_app/pages/home_page.dart';
+import 'package:blog_app/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class EmailLoginPage extends StatefulWidget {
   const EmailLoginPage({ Key? key }) : super(key: key);
@@ -27,9 +27,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       changeButtonli = true;
     });
     await Future.delayed(Duration(milliseconds: 500));
-    await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()))
-    });
+    await auth.signInWithEmailAndPassword(email: _email, password: _password);
 
     //await Navigator.pushNamed(context , MyRoutes.homeRoute);
     //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
@@ -45,14 +43,14 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       changeButtonsu = true;
     });
     await Future.delayed(Duration(milliseconds: 500));
-    await auth.createUserWithEmailAndPassword(email: _email, password: _password);
+    await auth.createUserWithEmailAndPassword(email: _email, password: _password).then((value) => {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => VerifyScreen()))
+    });
     final user =  FirebaseAuth.instance.currentUser!;
     user.updateDisplayName(_name);
     user.updatePhotoURL('https://i.pinimg.com/originals/cf/f8/81/cff88167e47af84658194f167ece0aea.png');
     //await Navigator.pushNamed(context , MyRoutes.homeRoute);
-    await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()))
-    });
+    
     //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
     setState(() {
       changeButtonsu = false;
