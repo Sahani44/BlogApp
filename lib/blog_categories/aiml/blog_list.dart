@@ -1,5 +1,6 @@
 // ignore: file_names
 // ignore: file_names
+import 'package:blog_app/blog_categories/aiml/blog_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class _BlogListState extends State<BlogList> {
   Widget build(BuildContext context) {
 
     final blogSnapshot = Provider.of<QuerySnapshot?>(context);
+    bool edit = false;
 
 /*    if(blogSnapshot == null)
     {
@@ -41,7 +43,8 @@ class _BlogListState extends State<BlogList> {
             authorName: blogSnapshot.docs[index].get('authorName').toString(),
             title: blogSnapshot.docs[index].get('title').toString(),
             description: blogSnapshot.docs[index].get('description').toString(),
-            imageurl: blogSnapshot.docs[index].get('imageUrl').toString()
+            imageurl: blogSnapshot.docs[index].get('imageUrl').toString(),
+            edit: edit,
           ),
         );
       },
@@ -56,29 +59,36 @@ class _BlogListState extends State<BlogList> {
 
 class BlogsTile extends StatelessWidget {
   
-  String imageurl = "",title = "",description = "",authorName = "";
+  String imageurl = "",title = "",description = "",authorName = "";bool edit;
 
-  BlogsTile({required this.imageurl,required this.title,required this.description,required this.authorName});
+  BlogsTile({required this.imageurl,required this.title,required this.description,required this.authorName,required this.edit});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          height: 150,width: MediaQuery.of(context).size.width,
-          child: ClipRRect(child: Image.network(imageurl,height: 150,fit:BoxFit.fitWidth),borderRadius: BorderRadius.circular(6))),
-        Container(
-          height: 150,
-          decoration: BoxDecoration(color: Colors.black45.withOpacity(0.3),borderRadius: BorderRadius.circular(6)),
-        ),
-        Column(
+    return Material(
+      child: InkWell(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BlogPage(title: title,desc:description,imageUrl: imageurl,edit:edit)));
+        },
+        child: Stack(
           children: [
-            Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
-            Text("By $authorName",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
-
+            SizedBox(
+              height: 150,width: MediaQuery.of(context).size.width,
+              child: ClipRRect(child: Image.network(imageurl,height: 150,fit:BoxFit.fitWidth),borderRadius: BorderRadius.circular(6))),
+            Container(
+              height: 150,
+              decoration: BoxDecoration(color: Colors.black45.withOpacity(0.3),borderRadius: BorderRadius.circular(6)),
+            ),
+            Column(
+              children: [
+                Text(title,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+                Text("By $authorName",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+          
+              ],
+            )
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }

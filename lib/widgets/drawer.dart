@@ -1,8 +1,6 @@
-import 'package:blog_app/pages/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 
 class MyDrawer extends StatelessWidget {
@@ -11,23 +9,20 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Container(
-        child: ListView(
-          padding : EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.zero,
-              child: UserAccountsDrawerHeader(
-                accountName: Text(user.displayName!),
-                accountEmail: Text(user.email!),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(user.photoURL!),
-                ),
+      child: ListView(
+        padding : EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.zero,
+            child: UserAccountsDrawerHeader(
+              accountName: Text(user.displayName!),
+              accountEmail: Text(user.email!),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(user.photoURL!),
               ),
             ),
-          ],
-        )
-        
+          ),
+        ],
       ),
     );
   }

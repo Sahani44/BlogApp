@@ -27,10 +27,12 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       changeButtonli = true;
     });
     await Future.delayed(Duration(milliseconds: 500));
-    await auth.signInWithEmailAndPassword(email: _email, password: _password);
+    await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()))
+    });
 
     //await Navigator.pushNamed(context , MyRoutes.homeRoute);
-    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
 
     setState(() {
       changeButtonli = false;
@@ -48,8 +50,10 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
     user.updateDisplayName(_name);
     user.updatePhotoURL('https://i.pinimg.com/originals/cf/f8/81/cff88167e47af84658194f167ece0aea.png');
     //await Navigator.pushNamed(context , MyRoutes.homeRoute);
-    await auth.signInWithEmailAndPassword(email: _email, password: _password);
-    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()))
+    });
+    //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
     setState(() {
       changeButtonsu = false;
     });

@@ -1,4 +1,4 @@
-import 'package:blog_app/blog_categories/ai/ml/blog_list.dart';
+import 'package:blog_app/blog_categories/aiml/blog_list.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

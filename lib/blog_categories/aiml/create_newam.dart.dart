@@ -22,7 +22,7 @@ class _CreateNamState extends State<CreateNam> {
   final _formKey = GlobalKey<FormState>();
   final user =  FirebaseAuth.instance.currentUser!;
 
-  CrudMethods crudMethods = new CrudMethods();
+  CrudMethods crudMethods = CrudMethods();
   
 
   String imageUrl = "";
@@ -36,7 +36,8 @@ class _CreateNamState extends State<CreateNam> {
     XFile? image;
 
     image = await _imagePicker.pickImage(source: ImageSource.gallery);
-    file = File(image!.path);
+    file = File(image
+    !.path);
     var snapshot = await _storage.ref().child("AiMlBlogImages").child("${randomAlphaNumeric(9)}.png").putFile(file);
     downloadUrl = await snapshot.ref.getDownloadURL();
     setState(() {
@@ -53,6 +54,7 @@ class _CreateNamState extends State<CreateNam> {
           "authorName":user.displayName as String,
           "title": title,
           "description": desc,
+          "email":user.email.toString()
         };
 
         crudMethods.addData(blogMap).then((result) {

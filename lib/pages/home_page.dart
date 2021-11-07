@@ -1,6 +1,6 @@
 
-import 'package:blog_app/blog_categories/ai/ml/create_am.dart';
-import 'package:blog_app/blog_categories/ai/ml/explore_am.dart';
+import 'package:blog_app/blog_categories/aiml/create_am.dart';
+import 'package:blog_app/blog_categories/aiml/explore_am.dart';
 import 'package:blog_app/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
