@@ -1,24 +1,28 @@
-import 'package:blog_app/pages/email_sign_up.dart';
+import 'dart:math';
+
+import 'package:blog_app/pages/email_sign_in.dart';
+import 'package:blog_app/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class EmailLoginPage extends StatefulWidget {
-  const EmailLoginPage({ Key? key }) : super(key: key);
+class EmailSignUpPage extends StatefulWidget {
+  const EmailSignUpPage({ Key? key }) : super(key: key);
 
   @override
-  State<EmailLoginPage> createState() => _EmailLoginPageState();
+  State<EmailSignUpPage> createState() => _EmailSignUpPageState();
 }
 
-class _EmailLoginPageState extends State<EmailLoginPage> {
+class _EmailSignUpPageState extends State<EmailSignUpPage> {
 
   String _email = "";
+  String _name = "";
   String _password = "";
   final auth = FirebaseAuth.instance;
   bool changeButtonli = false;
   bool changeButtonsu = false;
   final _formKey = GlobalKey<FormState>();
 
-  moveToHomeli() async {
+  /*moveToHomeli() async {
     if(_formKey.currentState!.validate()){
     setState(() {
       changeButtonli = true;
@@ -33,8 +37,8 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       changeButtonli = false;
     });
     }
-  }
-  /*moveToHomesu() async {
+  }*/
+  moveToHomesu() async {
     if(_formKey.currentState!.validate()){
     setState(() {
       changeButtonsu = true;
@@ -53,18 +57,18 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       changeButtonsu = false;
     });
     }
-  }*/
+  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("LogIn"),
+        title:Text("SignUp"),
         actions: [
           TextButton(
-              child: Text("SignUp",style: TextStyle(color:Colors.white),),
+              child: Text("LogIn",style: TextStyle(color:Colors.white),),
               onPressed: (){
-                Navigator.push(context,MaterialPageRoute(builder: (context) => EmailSignUpPage()));
+                Navigator.pop(context);
               },
           ),
         ],
@@ -84,7 +88,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                 height: 20.0,
                 //child: Text(""),
               ),
-              Text("Welcome",
+              Text("Welcome $_name",
               // ignore: prefer_const_constructors
               style: TextStyle(
                 fontSize: 28,
@@ -103,7 +107,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      /*TextFormField(
+                      TextFormField(
                         keyboardType: TextInputType.emailAddress,
                     // ignore: prefer_const_constructors
                     decoration: InputDecoration(
@@ -121,7 +125,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                         _name = value.trim();
                       });
                     },
-                  ),*/
+                  ),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                     // ignore: prefer_const_constructors
@@ -172,7 +176,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Material(
+                     /* Material(
                 
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(changeButtonli ?50:7),
@@ -197,9 +201,9 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
         
-                      /*Material(
+                      Material(
                 
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(changeButtonli ?50:7),
@@ -224,7 +228,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
                             ),
                           ),
                         ),
-                      ),*/
+                      ),
                     ],
                   )
         

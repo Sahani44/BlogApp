@@ -44,12 +44,13 @@ class SignUpWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10,),
-            ElevatedButton(
+            ElevatedButton.icon(
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50),),
               onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => EmailLoginPage()));
               }, 
-              child :Text('Log In/Sign Up'),
+              label :Text('Log In/Sign Up'),
+              icon: Icon(Icons.login),
               ),
             SizedBox(height: 10,),
             ElevatedButton.icon(
