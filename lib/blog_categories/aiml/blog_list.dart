@@ -1,5 +1,3 @@
-// ignore: file_names
-// ignore: file_names
 import 'package:blog_app/blog_categories/aiml/blog_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +43,7 @@ class _BlogListState extends State<BlogList> {
             description: blogSnapshot.docs[index].get('description').toString(),
             imageurl: blogSnapshot.docs[index].get('imageUrl').toString(),
             edit: edit,
+            blogId: blogSnapshot.docs[index].id,
           ),
         );
       },
@@ -59,16 +58,16 @@ class _BlogListState extends State<BlogList> {
 
 class BlogsTile extends StatelessWidget {
   
-  String imageurl = "",title = "",description = "",authorName = "";bool edit;
+  String imageurl = "",title = "",description = "",authorName = "",blogId = "";bool edit;
 
-  BlogsTile({required this.imageurl,required this.title,required this.description,required this.authorName,required this.edit});
+  BlogsTile({required this.imageurl,required this.title,required this.description,required this.authorName,required this.edit,required this.blogId});
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => BlogPage(title: title,desc:description,imageUrl: imageurl,edit:edit)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BlogPage(title: title,desc:description,imageUrl: imageurl,edit:edit,blogId:blogId)));
         },
         child: Stack(
           children: [

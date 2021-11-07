@@ -34,7 +34,7 @@ class _PrsnlBlogListState extends State<PrsnlBlogList> {
               description: blogSnapshot.docs[index].get('description').toString(),
               imageurl: blogSnapshot.docs[index].get('imageUrl').toString(),
               edit: edit,
-
+              blogId: blogSnapshot.docs[index].id
             ),
           );
         }

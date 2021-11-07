@@ -11,9 +11,16 @@ class CrudMethods{
 
   }
 
+
+  Future<void> updateData(updatedBlogData,blogId) async{
+
+    FirebaseFirestore.instance.collection("Blogs").doc(blogId).update(updatedBlogData);
+
+  }
+
+
   Stream<QuerySnapshot?>  get getData  {
     return FirebaseFirestore.instance.collection("Blogs").snapshots();
   }
-
 
 }
