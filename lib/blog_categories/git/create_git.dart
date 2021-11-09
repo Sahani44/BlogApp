@@ -1,28 +1,29 @@
 
 import 'package:blog_app/blog_categories/aiml/create_newam.dart';
 import 'package:blog_app/blog_categories/aiml/prnl_blog_list.dart';
+import 'package:blog_app/blog_categories/git/create_newgit.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class CreateAM extends StatefulWidget {
-  const CreateAM({ Key? key }) : super(key: key);
+class CreateGit extends StatefulWidget {
+  const CreateGit({ Key? key }) : super(key: key);
 
   @override
-  _CreateAMState createState() => _CreateAMState();
+  _CreateGitState createState() => _CreateGitState();
 }
 
-class _CreateAMState extends State<CreateAM> {
+class _CreateGitState extends State<CreateGit> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot?>.value(
-        value: CrudMethods().getData,
+        value: CrudMethods().getGitData,
         initialData: null,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("AI/ML Blogs"),
+            title: Text("Git Blogs"),
           ),
           body: PrsnlBlogList(),
           floatingActionButton: Row(
@@ -30,7 +31,7 @@ class _CreateAMState extends State<CreateAM> {
           children: [
             FloatingActionButton(
               onPressed: (){
-                Navigator.push(context,MaterialPageRoute(builder: (context) => CreateNam()));
+                Navigator.push(context,MaterialPageRoute(builder: (context) => CreateNgit()));
               },
               child: Icon(Icons.add),
             )

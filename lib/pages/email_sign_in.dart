@@ -1,9 +1,9 @@
 import 'package:blog_app/main.dart';
 import 'package:blog_app/pages/email_sign_up.dart';
-import 'package:blog_app/pages/login_page.dart';
 import 'package:blog_app/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EmailLoginPage extends StatefulWidget {
   const EmailLoginPage({ Key? key }) : super(key: key);
@@ -26,17 +26,25 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
     setState(() {
       changeButtonli = true;
     });
-    await Future.delayed(Duration(milliseconds: 500));
-    await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()))
-    });
+    try{
+      await Future.delayed(Duration(milliseconds: 500));
+      await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()))
+      });
 
-    //await Navigator.pushNamed(context , MyRoutes.homeRoute);
-    //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+      //await Navigator.pushNamed(context , MyRoutes.homeRoute);
+      //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
 
-    setState(() {
-      changeButtonli = false;
-    });
+      setState(() {
+        changeButtonli = false;
+        });
+      }
+      on FirebaseAuthException catch(e){
+        Fluttertoast.showToast(msg: e.message! , gravity: ToastGravity.TOP);
+        setState(() {
+        changeButtonli = false;
+        });
+      }
     }
   }
   

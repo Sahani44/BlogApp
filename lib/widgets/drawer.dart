@@ -40,7 +40,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 });
               },
             icon: Icon(Icons.person,color: Colors.blue,), 
-            label: Text("Update Profile",style: TextStyle(color: Colors.blue,fontSize: 17),)
+            label: Text("Update Profile",style: TextStyle(color: Colors.blue,fontSize: 17,),)
           ),
           TextButton.icon(
               label: Text("Log Out",style: TextStyle(color:Colors.blue,fontSize: 17),),

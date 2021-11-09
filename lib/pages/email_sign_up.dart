@@ -2,6 +2,7 @@
 import 'package:blog_app/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EmailSignUpPage extends StatefulWidget {
   const EmailSignUpPage({ Key? key }) : super(key: key);
@@ -41,7 +42,8 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
     setState(() {
       changeButtonsu = true;
     });
-    await Future.delayed(Duration(milliseconds: 500));
+    try{
+      await Future.delayed(Duration(milliseconds: 500));
     await auth.createUserWithEmailAndPassword(email: _email, password: _password).then((value) => {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => VerifyScreen()))
     });
@@ -54,6 +56,12 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
     setState(() {
       changeButtonsu = false;
     });
+    }on FirebaseAuthException catch(e){
+        Fluttertoast.showToast(msg: e.message! , gravity: ToastGravity.TOP);
+        setState(() {
+        changeButtonsu = false;
+        });
+      }
     }
   }
   
@@ -189,7 +197,7 @@ class _EmailSignUpPageState extends State<EmailSignUpPage> {
                               color: Colors.white,
                             ) : 
                             Center(
-                              child: Text("Login",
+                              child: Text("SignUp",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
