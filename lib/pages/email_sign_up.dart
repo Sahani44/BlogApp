@@ -1,6 +1,4 @@
-import 'dart:math';
 
-import 'package:blog_app/pages/email_sign_in.dart';
 import 'package:blog_app/pages/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
