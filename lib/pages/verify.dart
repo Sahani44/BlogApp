@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:blog_app/pages/home_page.dart';
+import 'package:blog_app/main.dart';
 import 'package:blog_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     if(user.emailVerified)
     {
       timer.cancel();
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
     }
 
 

@@ -17,14 +17,23 @@ class SignUpWidget extends StatelessWidget {
         title: Text("BDCoE Blogs"),
       ),
       body: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(),
+            //Spacer(),
             //Image.asset(),
-            FlutterLogo(size: 40,),
-            Spacer(),
+            Image.asset(
+                "assets/images/startPageImage.png",
+                fit: BoxFit.cover,
+              ),
+            //Spacer(),
+            SizedBox(
+                height: 20.0,
+                //child: Text(""),
+              ),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -43,7 +52,7 @@ class SignUpWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 20,),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity,50),),
               onPressed: (){

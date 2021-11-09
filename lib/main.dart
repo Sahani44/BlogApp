@@ -1,12 +1,8 @@
 import 'package:blog_app/pages/google_sign_in.dart';
 import 'package:blog_app/pages/login_page.dart';
-import 'package:blog_app/pages/sign_up_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:blog_app/utils/routes.dart';
 import 'package:blog_app/widgets/themes.dart';
 import 'package:provider/provider.dart';
-import 'pages/home_page.dart';
-import 'pages/email_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {

@@ -1,3 +1,4 @@
+import 'package:blog_app/main.dart';
 import 'package:blog_app/pages/email_sign_up.dart';
 import 'package:blog_app/pages/login_page.dart';
 import 'package:blog_app/pages/reset_password.dart';
@@ -27,7 +28,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
     });
     await Future.delayed(Duration(milliseconds: 500));
     await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()))
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()))
     });
 
     //await Navigator.pushNamed(context , MyRoutes.homeRoute);

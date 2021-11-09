@@ -14,7 +14,9 @@ class MyTheme{
 
    static ThemeData darkTheme(BuildContext
    context) => ThemeData(
-        brightness: Brightness.dark,
+        //brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.grey.shade900,
+        colorScheme: ColorScheme.dark(),
       );
 
   static Color creamColor = Color(0xfff5f5f5);
