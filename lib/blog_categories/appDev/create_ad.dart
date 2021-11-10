@@ -1,6 +1,7 @@
 
 import 'package:blog_app/blog_categories/aiml/prnl_blog_list.dart';
 import 'package:blog_app/blog_categories/appDev/create_newad.dart';
+import 'package:blog_app/blog_categories/appDev/prnl_blog_listad.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _CreateAdState extends State<CreateAd> {
           appBar: AppBar(
             title: Text("App Dev Blogs"),
           ),
-          body: PrsnlBlogList(),
+          body: PrsnlBlogListAd(),
           floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -1,21 +1,21 @@
 
-import 'package:blog_app/blog_categories/aiml/create_newam.dart';
 import 'package:blog_app/blog_categories/aiml/prnl_blog_list.dart';
 import 'package:blog_app/blog_categories/webDev/create_newwd.dart';
+import 'package:blog_app/blog_categories/webDev/prnl_blog_listwd.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class CreateAM extends StatefulWidget {
-  const CreateAM({ Key? key }) : super(key: key);
+class CreateWeb extends StatefulWidget {
+  const CreateWeb({ Key? key }) : super(key: key);
 
   @override
-  _CreateAMState createState() => _CreateAMState();
+  _CreateWebState createState() => _CreateWebState();
 }
 
-class _CreateAMState extends State<CreateAM> {
+class _CreateWebState extends State<CreateWeb> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot?>.value(
@@ -25,7 +25,7 @@ class _CreateAMState extends State<CreateAM> {
           appBar: AppBar(
             title: Text("Web Dev Blogs"),
           ),
-          body: PrsnlBlogList(),
+          body: PrsnlBlogListWeb(),
           floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

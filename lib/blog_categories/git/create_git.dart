@@ -2,6 +2,7 @@
 import 'package:blog_app/blog_categories/aiml/create_newam.dart';
 import 'package:blog_app/blog_categories/aiml/prnl_blog_list.dart';
 import 'package:blog_app/blog_categories/git/create_newgit.dart';
+import 'package:blog_app/blog_categories/git/prnl_blog_listgit.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _CreateGitState extends State<CreateGit> {
           appBar: AppBar(
             title: Text("Git Blogs"),
           ),
-          body: PrsnlBlogList(),
+          body: PrsnlBlogListGit(),
           floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

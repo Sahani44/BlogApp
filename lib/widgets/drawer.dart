@@ -44,9 +44,9 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           TextButton.icon(
               label: Text("Log Out",style: TextStyle(color:Colors.blue,fontSize: 17),),
-              onPressed: (){
+              onPressed: () async {
                 final provider = Provider.of<GoogleSignInProvider>(context,listen: false);
-                provider.logout();
+                await provider.logout();
               }, 
               icon: Icon(Icons.logout,color: Colors.blue,),
             ),

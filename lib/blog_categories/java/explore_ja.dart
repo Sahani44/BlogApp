@@ -1,18 +1,19 @@
 import 'package:blog_app/blog_categories/aiml/blog_list.dart';
+import 'package:blog_app/blog_categories/java/blog_listja.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class ExploreAm extends StatefulWidget {
-  const ExploreAm({ Key? key }) : super(key: key);
+class ExploreJa extends StatefulWidget {
+  const ExploreJa({ Key? key }) : super(key: key);
 
   @override
-  _ExploreAmState createState() => _ExploreAmState();
+  _ExploreJaState createState() => _ExploreJaState();
 }
 
-class _ExploreAmState extends State<ExploreAm> {
+class _ExploreJaState extends State<ExploreJa> {
 
   CrudMethods crudMethods = CrudMethods();
    
@@ -25,13 +26,13 @@ class _ExploreAmState extends State<ExploreAm> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot?>.value(
-      value: CrudMethods().getAdData,
+      value: CrudMethods().getJaData,
       initialData: null,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("App Dev Blogs"),
+          title: Text("Java Blogs"),
         ),
-        body: BlogList(),
+        body: BlogListJa(),
       ),
     );
   }

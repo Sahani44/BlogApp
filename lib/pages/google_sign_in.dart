@@ -42,7 +42,7 @@ class GoogleSignInProvider extends ChangeNotifier
 
     if(user.providerData[0].providerId == 'google.com')
     {await googleSignIn.disconnect();}
-    FirebaseAuth.instance.signOut();
+    await FirebaseAuth.instance.signOut();
     
   }
 

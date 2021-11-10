@@ -1,18 +1,18 @@
-import 'package:blog_app/blog_categories/aiml/blog_list.dart';
+import 'package:blog_app/blog_categories/appDev/blog_listad.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-class ExploreCp extends StatefulWidget {
-  const ExploreCp({ Key? key }) : super(key: key);
+class ExploreApp extends StatefulWidget {
+  const ExploreApp({ Key? key }) : super(key: key);
 
   @override
-  _ExploreCpState createState() => _ExploreCpState();
+  _ExploreAppState createState() => _ExploreAppState();
 }
 
-class _ExploreCpState extends State<ExploreCp> {
+class _ExploreAppState extends State<ExploreApp> {
 
   CrudMethods crudMethods = CrudMethods();
    
@@ -25,13 +25,13 @@ class _ExploreCpState extends State<ExploreCp> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot?>.value(
-      value: CrudMethods().getCpData,
+      value: CrudMethods().getAdData,
       initialData: null,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("CPP Blogs"),
+          title: Text("App Dev Blogs"),
         ),
-        body: BlogList(),
+        body: BlogListAd(),
       ),
     );
   }

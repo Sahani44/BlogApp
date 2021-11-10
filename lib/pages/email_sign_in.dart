@@ -1,5 +1,5 @@
-import 'package:blog_app/main.dart';
 import 'package:blog_app/pages/email_sign_up.dart';
+import 'package:blog_app/pages/login_page.dart';
 import 'package:blog_app/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,9 +29,8 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
     try{
       await Future.delayed(Duration(milliseconds: 500));
       await auth.signInWithEmailAndPassword(email: _email, password: _password).then((value) => {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MyApp()))
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => false)
       });
-
       //await Navigator.pushNamed(context , MyRoutes.homeRoute);
       //await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
 

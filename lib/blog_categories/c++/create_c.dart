@@ -1,7 +1,6 @@
 
-import 'package:blog_app/blog_categories/aiml/create_newam.dart';
-import 'package:blog_app/blog_categories/aiml/prnl_blog_list.dart';
-import 'package:blog_app/blog_categories/c++/create_newam.dart';
+import 'package:blog_app/blog_categories/c++/create_newcp.dart';
+import 'package:blog_app/blog_categories/c++/prnl_blog_listcp.dart';
 import 'package:blog_app/services/crud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class _CreateCpState extends State<CreateCp> {
           appBar: AppBar(
             title: Text("CPP Blogs"),
           ),
-          body: PrsnlBlogList(),
+          body: PrsnlBlogListCp(),
           floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
